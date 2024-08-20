@@ -4,6 +4,7 @@ import { University } from "../../types";
 
 function SelectUniversity() {
   const [query, setQuery] = useState("");
+  const [selectedUniversity, setSelectedUniversity] = useState("");
 
   console.log({ query });
 
@@ -16,6 +17,16 @@ function SelectUniversity() {
     }
     return response.json();
   }
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedUniversity(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLSelectElement>) => {
+    if (event.key === "Enter") {
+      setSelectedUniversity(event.currentTarget.value);
+    }
+  };
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ["universities"],
@@ -34,18 +45,28 @@ function SelectUniversity() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      {isLoading && <div>Loading...</div>}
       {isError && <div>Error fetching data</div>}
 
-      {data && (
-        <select>
-          {data.map((university: University) => (
-            <option key={university.name} value={university.name}>
-              {university.name}
-            </option>
-          ))}
-        </select>
-      )}
+      <div className="universityList">
+        <label>
+          Università nel mondo:
+          <select
+            id="universitySelect"
+            disabled={query.length < 3}
+            value={selectedUniversity}
+            onChange={handleSelectChange}
+            onKeyDown={handleKeyDown}>
+            {data &&
+              data.length >= 3 &&
+              data.map((university: University) => (
+                <option key={university.name} value={university.name}>
+                  {university.name}
+                </option>
+              ))}
+          </select>
+          {data && data.length === 0 && <div>No results found...</div>}
+        </label>
+      </div>
     </>
   );
 }
