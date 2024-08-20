@@ -1,0 +1,9 @@
+select {
+  min-width: 225px;
+}
+
+.universityList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
