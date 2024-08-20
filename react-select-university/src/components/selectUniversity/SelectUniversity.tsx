@@ -11,7 +11,7 @@ function SelectUniversity() {
 
   async function fetchUniversities(): Promise<University[]> {
     const response = await fetch(
-      `http://universities.hipolabs.com/search?name=${query}`
+      `http://universities.hipolabs.com/search?name=${query.toLowerCase()}`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
