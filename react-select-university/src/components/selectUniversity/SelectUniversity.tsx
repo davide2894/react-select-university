@@ -20,7 +20,7 @@ function SelectUniversity() {
   const { isLoading, isError, data } = useQuery({
     queryKey: ["universities"],
     queryFn: fetchUniversities,
-    enabled: query.length > 3,
+    enabled: query.length >= 3,
   });
 
   console.log({ data });
