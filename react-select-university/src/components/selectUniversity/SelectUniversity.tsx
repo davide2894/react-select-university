@@ -1,13 +1,29 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { University } from "../../types";
 import "./SelectUniversity.css";
+import { useQuery } from "@tanstack/react-query";
 
-function SelectUniversity() {
+type SelectUniversityProps = {
+  disabled: boolean;
+  label: string;
+  onObjectSelected: (item: string) => void;
+};
+
+function SelectUniversity({
+  disabled,
+  label,
+  onObjectSelected,
+}: SelectUniversityProps) {
   const [query, setQuery] = useState("");
   const [selectedUniversity, setSelectedUniversity] = useState("");
 
-  console.log({ query });
+  const { isError, data } = useQuery({
+    queryKey: ["universities"],
+    queryFn: fetchUniversities,
+    enabled: query.length >= 3,
+  });
+
+  console.log({ query, data });
 
   async function fetchUniversities(): Promise<University[]> {
     const response = await fetch(
@@ -21,25 +37,20 @@ function SelectUniversity() {
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedUniversity(event.target.value);
+    onObjectSelected(event.target.value);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLSelectElement>) => {
     if (event.key === "Enter") {
       setSelectedUniversity(event.currentTarget.value);
+      onObjectSelected(event.currentTarget.value);
     }
   };
-
-  const { isLoading, isError, data } = useQuery({
-    queryKey: ["universities"],
-    queryFn: fetchUniversities,
-    enabled: query.length >= 3,
-  });
-
-  console.log({ data });
 
   return (
     <>
       <div>SelectUniversity</div>
+
       <input
         type="text"
         placeholder="Search University..."
@@ -47,13 +58,12 @@ function SelectUniversity() {
         onChange={(e) => setQuery(e.target.value)}
       />
       {isError && <div>Error fetching data</div>}
-
       <div className="universityList">
         <label>
-          Università nel mondo:
+          {label}
           <select
             id="universitySelect"
-            disabled={query.length < 3}
+            disabled={disabled}
             value={selectedUniversity}
             onChange={handleSelectChange}
             onKeyDown={handleKeyDown}>
