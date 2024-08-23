@@ -2,7 +2,7 @@ import { useState } from "react";
 import { University } from "../../types";
 import "./SelectUniversity.css";
 import { useQuery } from "@tanstack/react-query";
-import fetchUniversities from "../../utils/fetchUniversities";
+import fetchUniversities from "../../lib/fetchUniversities";
 
 type SelectUniversityProps = {
   disabled: boolean;
