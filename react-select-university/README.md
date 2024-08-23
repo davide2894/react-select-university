@@ -24,6 +24,7 @@ Here are the technologies being used
 - [Typescript](https://www.typescriptlang.org/) as the safety layer above JavaScript, to ensure less errors during development
 - [Tanstack Query](https://tanstack.com/query/latest) as the main data-fetching library to handle the API call to the instructed endpoint: I chose this library over using the browser native fetch API with `useEffect` because `Tanstack Query` handles all the use cases and edge cases such as error, cache and so on
 - [Jest](https://jestjs.io/) as the main unit test framework
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) for styling, plain and simple
 
 ### Run locally
 
