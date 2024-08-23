@@ -47,20 +47,21 @@ function SelectUniversity({
     }
   };
 
+  const cssClasses = `selectWrapper ${disabled ? "grayText" : ""}`;
+
   return (
     <>
-      <div>SelectUniversity</div>
-
-      <input
-        type="text"
-        placeholder="Search University..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      {isError && <div>Error fetching data</div>}
-      <div className="universityList">
+      <div className={cssClasses}>
         <label>
-          {label}
+          <span>{label}</span>
+          <input
+            autoFocus={disabled}
+            disabled={disabled}
+            type="text"
+            placeholder="Search University..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
           <select
             id="universitySelect"
             disabled={disabled}
@@ -77,6 +78,7 @@ function SelectUniversity({
           </select>
           {data && data.length === 0 && <div>No results found...</div>}
         </label>
+        {isError && <div>Error fetching data</div>}
       </div>
     </>
   );
