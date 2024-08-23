@@ -13,13 +13,13 @@ function App() {
     <>
       <button
         onClick={handleButtonClick}
-        style={{ backgroundColor: isSelectEnabled ? "green" : "red" }}>
-        {isSelectEnabled ? "Click to enable" : "Click to disable"}{" "}
+        style={{ backgroundColor: !isSelectEnabled ? "green" : "red" }}>
+        {!isSelectEnabled ? "Click to enable" : "Click to disable"}{" "}
         SelectUniversity component
       </button>
 
       <SelectUniversity
-        disabled={isSelectEnabled}
+        disabled={!isSelectEnabled}
         label="Search an university in the world:"
         onObjectSelected={(item: string) => {
           console.log(`Element selected ${JSON.stringify(item)}`);
