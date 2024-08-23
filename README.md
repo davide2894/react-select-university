@@ -1,13 +1,6 @@
-# Notes
-
-- Chose Vite because this is a SPA. Could have choosen Next but project is too simple for that, it doesn't need its ecosystem
-- <select> element needs a value attribute in React to track its value
-
 # Select University
 
 This is a `<select>` element that lets the user decide which university to choose for him or herself.
-
-[Demo hosted on Vercel](----)
 
 ## User journey
 
