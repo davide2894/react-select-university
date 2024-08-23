@@ -22,7 +22,7 @@ function App() {
         disabled={isSelectEnabled}
         label="Search an university in the world:"
         onObjectSelected={(item: string) => {
-          console.log(`Selezionato elemento ${JSON.stringify(item)}`);
+          console.log(`Element selected ${JSON.stringify(item)}`);
         }}
       />
     </>
