@@ -11,8 +11,10 @@ function App() {
 
   return (
     <>
-      <button onClick={handleButtonClick}>
-        Toggle SelectUniversity component
+      <button
+        onClick={handleButtonClick}
+        style={{ backgroundColor: isSelectEnabled ? "red" : "green" }}>
+        {isSelectEnabled ? "Enable" : "Disable"} SelectUniversity component
       </button>
 
       <SelectUniversity
