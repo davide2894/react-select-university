@@ -2,6 +2,7 @@ import { useState } from "react";
 import { University } from "../../types";
 import "./SelectUniversity.css";
 import { useQuery } from "@tanstack/react-query";
+import fetchUniversities from "../../utils/fetchUniversities";
 
 type SelectUniversityProps = {
   disabled: boolean;
@@ -19,21 +20,11 @@ function SelectUniversity({
 
   const { isError, data } = useQuery({
     queryKey: ["universities"],
-    queryFn: fetchUniversities,
+    queryFn: () => fetchUniversities(query),
     enabled: query.length >= 3,
   });
 
   console.log({ query, data });
-
-  async function fetchUniversities(): Promise<University[]> {
-    const response = await fetch(
-      `http://universities.hipolabs.com/search?name=${query.toLowerCase()}`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  }
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedUniversity(event.target.value);

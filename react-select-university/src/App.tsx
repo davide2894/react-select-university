@@ -11,11 +11,13 @@ function App() {
 
   return (
     <>
-      <button onClick={handleButtonClick}>Toggle Select component below</button>
+      <button onClick={handleButtonClick}>
+        Toggle SelectUniversity component
+      </button>
 
       <SelectUniversity
         disabled={isSelectEnabled}
-        label="Università nel mondo:"
+        label="Search an university in the world:"
         onObjectSelected={(item: string) => {
           console.log(`Selezionato elemento ${JSON.stringify(item)}`);
         }}
