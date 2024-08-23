@@ -13,8 +13,9 @@ function App() {
     <>
       <button
         onClick={handleButtonClick}
-        style={{ backgroundColor: isSelectEnabled ? "red" : "green" }}>
-        {isSelectEnabled ? "Enable" : "Disable"} SelectUniversity component
+        style={{ backgroundColor: isSelectEnabled ? "green" : "red" }}>
+        {isSelectEnabled ? "Click to enable" : "Click to disable"}{" "}
+        SelectUniversity component
       </button>
 
       <SelectUniversity
